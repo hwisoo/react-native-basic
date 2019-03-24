@@ -9,6 +9,7 @@ function List(props) {
         key={index}
         title={item.name}
         hideChevron={true}
+        onPress={() => props.onPress(item.id)}
         leftAvatar={{ source: require("./images/nba.jpg") }}
       />
     );
