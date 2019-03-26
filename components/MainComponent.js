@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import List from "./ListComponent";
+import Home from "./HomeComponent";
 import { View, Platform } from "react-native";
 import { PLAYERS } from "../shared/players";
 import Playerdetail from "./PlayerDetailComponent";
-import { createStackNavigator } from "react-navigation";
+import { createStackNavigator, createDrawerNavigator } from "react-navigation";
+import { Icon } from "react-native-elements";
 
 const ListNavigator = createStackNavigator(
   {
@@ -23,6 +25,44 @@ const ListNavigator = createStackNavigator(
     }
   }
 );
+const HomeNavigator = createStackNavigator(
+  {
+    Home: { screen: Home }
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      headerStyle: {
+        backgroundColor: "#1D428A"
+      },
+      headerTitleStyle: {
+        color: "#fff"
+      },
+      headerTintColor: "#fff"
+    })
+  }
+);
+
+const MainNavigator = createDrawerNavigator(
+  {
+    Home: {
+      screen: HomeNavigator,
+      navigationOptions: {
+        title: "Home",
+        drawerLabel: "Home"
+      }
+    },
+    List: {
+      screen: ListNavigator,
+      navigationOptions: {
+        title: "List",
+        drawerLabel: "List"
+      }
+    }
+  },
+  {
+    drawerBackgroundColor: "#1D428A"
+  }
+);
 
 class Main extends Component {
   render() {
@@ -33,7 +73,7 @@ class Main extends Component {
           paddingTop: Platform.OS === "ios" ? 0 : Expo.Constants.statusBarHeight
         }}
       >
-        <ListNavigator />
+        <MainNavigator />
       </View>
     );
   }
