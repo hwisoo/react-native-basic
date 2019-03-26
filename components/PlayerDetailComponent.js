@@ -14,6 +14,12 @@ function RenderPlayer(props) {
         image={require("./images/nba.jpg")}
       >
         <Text style={{ margin: 10, textAlign: "center" }}>{player.name}</Text>
+        <Text style={{ textAlign: "center" }}>
+          NBA Championships: {player.championships}
+        </Text>
+        <Text style={{ textAlign: "center" }}>
+          Regular Season MVP's: {player.mvp}
+        </Text>
       </Card>
     );
   } else {
